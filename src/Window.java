@@ -199,7 +199,18 @@ public class Window extends JFrame implements ActionListener {
 
         if(e.getSource()==call){
 
-            Logic.call(screenTextField);
+            Logic.call(screenTextField,this);
+
+        }else if(e.getSource()==remove){
+
+            Logic.clear(screenTextField);
+
+        }else{
+
+            //Pobieranie wartości labela buttona, który przycisnął user
+            JButton myButton = (JButton)e.getSource();
+
+            Logic.insertNumber(screenTextField,myButton.getText());
 
         }
 
