@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 public class Window extends JFrame implements ActionListener {
 
+
     //Zmienna przechowująca wielkość rozdzielczości
     Dimension screenResolution;
 
@@ -24,6 +25,9 @@ public class Window extends JFrame implements ActionListener {
     JTextField screenTextField;
 
     Window(){
+
+        //Zamykanie okna programu
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Wyłączenie możliwości zmiany wielkości okna
         setResizable(false);
