@@ -20,6 +20,8 @@ public class Window extends JFrame implements ActionListener {
     int windowWidth;
     int windowHeight;
 
+    JPanel panelTextField, panelButtons;
+
     JButton one,two,three,four,five,six,seven,eight,nine,star,zero,hash,plus,call,remove;
 
     JTextField screenTextField;
@@ -55,9 +57,10 @@ public class Window extends JFrame implements ActionListener {
         //Ustawienie wielkości okna
         setSizeOfWindow(screenWidth,screenHeight);
 
+        createPanels();
+
         //Utworzenie etykiety tekstowej działającej jak ekran telefonu
         createTextField();
-
 
         //Utworzenie przycisków do aplikacji
         createButtons();
@@ -115,11 +118,17 @@ public class Window extends JFrame implements ActionListener {
 
     }
 
+    private void createPanels(){
+
+        this.panelTextField = new JPanel();
+        this.panelButtons = new JPanel();
+
+    }
+
     private void createTextField(){
 
         screenTextField = createJTextField();
-
-        add(screenTextField);
+            screenTextField.setPreferredSize(new Dimension((int) (windowWidth*0.9),windowHeight/7));
 
     }
 
@@ -163,7 +172,7 @@ public class Window extends JFrame implements ActionListener {
 
 
         String colConfiguration = width/3+"px,"+width/3+"px,"+width/3+"px";
-        String  rowConfiguration = height/6+"px,"+height/6+"px,"+height/6+"px,"+height/6+"px,"+height/6+"px,"+height/6+"px";
+        String  rowConfiguration = height/7+"px,"+height/7+"px,"+height/7+"px,"+height/7+"px,"+height/7+"px";
 
         FormLayout formLayout = new FormLayout(colConfiguration,rowConfiguration);
 
@@ -172,29 +181,37 @@ public class Window extends JFrame implements ActionListener {
 
     private void addLayoutAndComponents(LayoutManager layoutManager){
 
-        setLayout(layoutManager);
+        panelTextField.setLayout(new GridLayout());
+        panelButtons.setLayout(layoutManager);
 
         //Obiekt do obsługi komórek layoutu
         CellConstraints cc = new CellConstraints();
 
+        //Dodanie textFiled do panelu TextField
+        panelTextField.add(screenTextField);
+
 
         //Dodanie przycisków do głównego okna
-        add(one,cc.xy(1,1,CellConstraints.FILL,CellConstraints.FILL));
-        add(two,cc.xy(2,1,CellConstraints.FILL,CellConstraints.FILL));
-        add(three,cc.xy(3,1,CellConstraints.FILL,CellConstraints.FILL));
-        add(four,cc.xy(1,2,CellConstraints.FILL,CellConstraints.FILL));
-        add(five,cc.xy(2,2,CellConstraints.FILL,CellConstraints.FILL));
-        add(six,cc.xy(3,2,CellConstraints.FILL,CellConstraints.FILL));
-        add(seven,cc.xy(1,3,CellConstraints.FILL,CellConstraints.FILL));
-        add(eight,cc.xy(2,3,CellConstraints.FILL,CellConstraints.FILL));
-        add(nine,cc.xy(3,3,CellConstraints.FILL,CellConstraints.FILL));
-        add(star,cc.xy(1,4,CellConstraints.FILL,CellConstraints.FILL));
-        add(zero,cc.xy(2,4,CellConstraints.FILL,CellConstraints.FILL));
-        add(hash,cc.xy(3,4,CellConstraints.FILL,CellConstraints.FILL));
-        add(plus,cc.xy(1,5,CellConstraints.FILL,CellConstraints.FILL));
-        add(call,cc.xy(2,5,CellConstraints.FILL,CellConstraints.FILL));
-        add(remove,cc.xy(3,5,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(one,cc.xy(1,1,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(two,cc.xy(2,1,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(three,cc.xy(3,1,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(four,cc.xy(1,2,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(five,cc.xy(2,2,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(six,cc.xy(3,2,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(seven,cc.xy(1,3,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(eight,cc.xy(2,3,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(nine,cc.xy(3,3,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(star,cc.xy(1,4,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(zero,cc.xy(2,4,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(hash,cc.xy(3,4,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(plus,cc.xy(1,5,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(call,cc.xy(2,5,CellConstraints.FILL,CellConstraints.FILL));
+        panelButtons.add(remove,cc.xy(3,5,CellConstraints.FILL,CellConstraints.FILL));
 
+
+        //Dodanie paneli zawierających główne elementy do ekranu głównego
+        add(panelTextField);
+        add(panelButtons);
     }
 
 
